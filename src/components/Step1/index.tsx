@@ -18,7 +18,7 @@ const Step1: React.FC<Props> = React.memo(function Step1({ onComplete }) {
 
 	const handleNextClick = useCallback(() => {
 		onComplete(selectedFiles);
-	}, [selectedFiles]);
+	}, [onComplete, selectedFiles]);
 
 	return (
 		<div className="container h-100">
