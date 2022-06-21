@@ -12,7 +12,8 @@ export interface Props {
 }
 
 enum State {
-	Processing,
+	Initial,
+	InProgress,
 	Completed,
 	Error,
 }
@@ -21,9 +22,14 @@ const Step4: React.FC<Props> = React.memo(function Step4({
 	flightLogs,
 	onComplete,
 }) {
-	const [state, setState] = useState(State.Processing);
+	const [state, setState] = useState(State.Initial);
 
 	useEffect(() => {
+		if (state !== State.Initial) {
+			return;
+		}
+		setState(State.InProgress);
+
 		Promise.all(flightLogs.map(executeRename))
 			.then(() => {
 				setState(State.Completed);
@@ -32,12 +38,12 @@ const Step4: React.FC<Props> = React.memo(function Step4({
 				console.error(err);
 				setState(State.Error);
 			});
-	}, [flightLogs]);
+	}, [state, flightLogs]);
 
 	return (
 		<div className="container h-100">
 			<div className="h-100 d-flex flex-column align-items-center justify-content-center gap-3">
-				{state === State.Processing ? (
+				{state === State.Initial || state === State.InProgress ? (
 					<>
 						<div className="spinner-border" role="status" />
 						<div>ファイル名を変更中です</div>
