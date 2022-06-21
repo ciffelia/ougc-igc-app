@@ -1,7 +1,8 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useId, useMemo } from 'react';
+import { base } from '@/path';
 import { FlightLog } from '@/flight/types';
 import { nameFlightLog } from '@/flight/nameFlightLog';
-import { base } from '@/path';
+import DataList from '@/components/Step3/DataList';
 
 export interface Props {
 	flightLogs: FlightLog[];
@@ -12,6 +13,15 @@ const FlightLogTable: React.FC<Props> = React.memo(function FlightLogTable({
 	flightLogs,
 	onFlightLogsChange,
 }) {
+	const frontSeatOptions = useMemo(
+		() => Array.from(new Set(flightLogs.map((log) => log.frontSeat))),
+		[flightLogs],
+	);
+	const backSeatOptions = useMemo(
+		() => Array.from(new Set(flightLogs.map((log) => log.backSeat))),
+		[flightLogs],
+	);
+
 	const handleFlightLogChange = useCallback(
 		(i: number, flightLog: FlightLog) => {
 			const newFlightLogs = [...flightLogs];
@@ -40,6 +50,8 @@ const FlightLogTable: React.FC<Props> = React.memo(function FlightLogTable({
 					<FlightLogTableRow
 						key={i}
 						flightLog={l}
+						frontSeatOptions={frontSeatOptions}
+						backSeatOptions={backSeatOptions}
 						onNumberChange={(number) =>
 							handleFlightLogChange(i, { ...l, number })
 						}
@@ -58,6 +70,8 @@ const FlightLogTable: React.FC<Props> = React.memo(function FlightLogTable({
 
 interface FlightLogTableRowProps {
 	flightLog: FlightLog;
+	frontSeatOptions: string[];
+	backSeatOptions: string[];
 	onNumberChange: (value: string) => void;
 	onFrontSeatChange: (value: string) => void;
 	onBackSeatChange: (value: string) => void;
@@ -66,6 +80,8 @@ interface FlightLogTableRowProps {
 const FlightLogTableRow: React.FC<FlightLogTableRowProps> = React.memo(
 	function FlightLogTableRow({
 		flightLog,
+		frontSeatOptions,
+		backSeatOptions,
 		onNumberChange,
 		onFrontSeatChange,
 		onBackSeatChange,
@@ -78,6 +94,17 @@ const FlightLogTableRow: React.FC<FlightLogTableRowProps> = React.memo(
 			[flightLog.filepath],
 		);
 		const newFilename = useMemo(() => nameFlightLog(flightLog), [flightLog]);
+
+		const frontSeatDataListId = useId();
+		const backSeatDataListId = useId();
+		const filteredFrontSeatOptions = useMemo(
+			() => frontSeatOptions.filter((x) => x !== flightLog.frontSeat),
+			[frontSeatOptions, flightLog.frontSeat],
+		);
+		const filteredBackSeatOptions = useMemo(
+			() => backSeatOptions.filter((x) => x !== flightLog.backSeat),
+			[backSeatOptions, flightLog.backSeat],
+		);
 
 		const handleNumberChange: React.ChangeEventHandler<HTMLInputElement> =
 			useCallback(
@@ -142,6 +169,7 @@ const FlightLogTableRow: React.FC<FlightLogTableRowProps> = React.memo(
 							value={flightLog.frontSeat}
 							onChange={handleFrontSeatChange}
 							placeholder="空席"
+							list={frontSeatDataListId}
 							aria-label="前席搭乗者"
 						/>
 					) : (
@@ -156,6 +184,7 @@ const FlightLogTableRow: React.FC<FlightLogTableRowProps> = React.memo(
 							value={flightLog.backSeat}
 							onChange={handleBackSeatChange}
 							placeholder="空席"
+							list={backSeatDataListId}
 							aria-label="後席搭乗者"
 						/>
 					) : (
@@ -165,6 +194,8 @@ const FlightLogTableRow: React.FC<FlightLogTableRowProps> = React.memo(
 				<td style={{ width: '220px' }}>
 					{newFilename === originalFilename ? '（変更なし）' : newFilename}
 				</td>
+				<DataList id={frontSeatDataListId} options={filteredFrontSeatOptions} />
+				<DataList id={backSeatDataListId} options={filteredBackSeatOptions} />
 			</tr>
 		);
 	},
