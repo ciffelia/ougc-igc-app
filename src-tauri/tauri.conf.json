@@ -1,7 +1,7 @@
 {
   "$schema": "../node_modules/@tauri-apps/cli/schema.json",
   "package": {
-    "productName": "igc-app",
+    "productName": "GPS Flight Record",
     "version": "0.1.0"
   },
   "build": {
@@ -22,7 +22,7 @@
     },
     "bundle": {
       "active": true,
-      "identifier": "com.ciffelia.igc-app",
+      "identifier": "com.ciffelia.ougc-igc-app",
       "icon": [
         "icons/32x32.png",
         "icons/128x128.png",
@@ -37,7 +37,7 @@
     },
     "windows": [
       {
-        "title": "igc-app",
+        "title": "GPS Flight Record",
         "width": 950,
         "minWidth": 950,
         "minHeight": 600,
