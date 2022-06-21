@@ -24,6 +24,9 @@ const App: React.FC = React.memo(function App() {
 	const handleStep3Complete = useCallback((flightLogs: FlightLog[]) => {
 		setState({ step: 4, flightLogs });
 	}, []);
+	const handleStep4Complete = useCallback(() => {
+		setState({ step: 1 });
+	}, []);
 
 	if (state.step === 1) {
 		return <Step1 onComplete={handleStep1Complete} />;
@@ -42,7 +45,9 @@ const App: React.FC = React.memo(function App() {
 			/>
 		);
 	} else if (state.step === 4) {
-		return <Step4 flightLogs={state.flightLogs} />;
+		return (
+			<Step4 flightLogs={state.flightLogs} onComplete={handleStep4Complete} />
+		);
 	} else {
 		return unreachable(state);
 	}

@@ -8,6 +8,7 @@ import { nameFlightLog } from '@/flight/nameFlightLog';
 
 export interface Props {
 	flightLogs: FlightLog[];
+	onComplete: () => void;
 }
 
 enum State {
@@ -16,7 +17,10 @@ enum State {
 	Error,
 }
 
-const Step4: React.FC<Props> = React.memo(function Step4({ flightLogs }) {
+const Step4: React.FC<Props> = React.memo(function Step4({
+	flightLogs,
+	onComplete,
+}) {
 	const [state, setState] = useState(State.Processing);
 
 	useEffect(() => {
@@ -44,6 +48,13 @@ const Step4: React.FC<Props> = React.memo(function Step4({ flightLogs }) {
 							<BsCheckCircle />
 						</div>
 						<div>ファイル名の変更が完了しました</div>
+						<button
+							onClick={onComplete}
+							type="button"
+							className="btn btn-primary btn-lg"
+						>
+							最初の画面に戻る
+						</button>
 					</>
 				) : state === State.Error ? (
 					<>
