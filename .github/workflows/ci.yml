@@ -13,7 +13,7 @@ jobs:
           node-version: 16
           check-latest: true
           cache: yarn
-      - run: yarn install --frozen-lockfile
+      - run: yarn install --immutable
       - run: yarn run build:front
 
   lint:
@@ -26,5 +26,5 @@ jobs:
           node-version: 16
           check-latest: true
           cache: yarn
-      - run: yarn install --frozen-lockfile
+      - run: yarn install --immutable
       - run: yarn run lint

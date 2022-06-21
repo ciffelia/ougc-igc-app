@@ -1,5 +1,10 @@
 /package.json
 
+# Yarn v2
+.yarn
+.yarnrc.yml
+.pnp.*
+
 # Build output
 /dist
 
