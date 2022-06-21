@@ -18,7 +18,7 @@ const Step3: React.FC<Props> = React.memo(function Step3({
 	}, [onComplete, flightLogs]);
 
 	return (
-		<div className="container-fluid p-4">
+		<div className="p-4">
 			<div>
 				出発・着陸時刻を発航記録と照らし合わせ、発航No.と搭乗者を入力してください。
 			</div>
