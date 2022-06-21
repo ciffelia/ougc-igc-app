@@ -16,7 +16,8 @@
         "open": true
       },
       "fs": {
-        "readFile": true
+        "readFile": true,
+        "renameFile": true
       }
     },
     "bundle": {

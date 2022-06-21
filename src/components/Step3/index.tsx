@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import FlightLogTable from '@/components/Step3/FlightLogTable';
 import { FlightLog } from '@/flight/types';
 
 export interface Props {
 	initialFlightLogs: FlightLog[];
-	onComplete: () => void;
+	onComplete: (flightLogs: FlightLog[]) => void;
 }
 
 const Step3: React.FC<Props> = React.memo(function Step3({
@@ -12,6 +12,10 @@ const Step3: React.FC<Props> = React.memo(function Step3({
 	onComplete,
 }) {
 	const [flightLogs, setFlightLogs] = useState<FlightLog[]>(initialFlightLogs);
+
+	const handleExecuteClick = useCallback(() => {
+		onComplete(flightLogs);
+	}, [onComplete, flightLogs]);
 
 	return (
 		<div className="container-fluid p-4">
@@ -22,6 +26,13 @@ const Step3: React.FC<Props> = React.memo(function Step3({
 				flightLogs={flightLogs}
 				onFlightLogsChange={setFlightLogs}
 			/>
+			<button
+				onClick={handleExecuteClick}
+				type="button"
+				className="btn btn-primary btn-lg"
+			>
+				ファイル名を変更
+			</button>
 		</div>
 	);
 });
