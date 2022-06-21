@@ -1,5 +1,8 @@
 /package.json
 
+# Build output
+/dist
+
 # Rust
 /src-tauri
 
