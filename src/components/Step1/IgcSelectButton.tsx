@@ -9,19 +9,19 @@ export interface Props {
 const IgcSelectButton: React.FC<Props> = React.memo(function IgcSelectButton({
 	onSelect,
 }) {
-	const handleClick = useCallback(() => {
-		open({
+	const handleClick = useCallback(async () => {
+		const x = await open({
 			multiple: true,
 			filters: [{ name: 'GPSログ', extensions: ['igc'] }],
-		}).then((x) => {
-			if (x === null) {
-				return;
-			} else if (Array.isArray(x)) {
-				onSelect(x);
-			} else {
-				onSelect([x]);
-			}
 		});
+		if (x === null) {
+			return;
+		}
+		if (Array.isArray(x)) {
+			onSelect(x);
+		} else {
+			onSelect([x]);
+		}
 	}, [onSelect]);
 
 	return (
