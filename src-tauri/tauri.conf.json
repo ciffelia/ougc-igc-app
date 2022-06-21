@@ -30,7 +30,12 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "targets": "all"
+      "targets": "all",
+      "windows": {
+        "wix": {
+          "language": "jp-JP"
+        }
+      }
     },
     "security": {
       "csp": "default-src 'self'"
