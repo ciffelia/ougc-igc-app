@@ -37,8 +37,8 @@ const FlightLogTable: React.FC<Props> = React.memo(function FlightLogTable({
 				<tr>
 					<th scope="col">元ファイル名</th>
 					<th scope="col">日付</th>
-					<th scope="col">出発時刻</th>
-					<th scope="col">着陸時刻</th>
+					<th scope="col">出発</th>
+					<th scope="col">着陸</th>
 					<th scope="col">発航No.</th>
 					<th scope="col">前席搭乗者</th>
 					<th scope="col">後席搭乗者</th>
@@ -161,7 +161,7 @@ const FlightLogTableRow: React.FC<FlightLogTableRowProps> = React.memo(
 						'-'
 					)}
 				</td>
-				<td style={{ width: '100px' }}>
+				<td style={{ width: '120px' }}>
 					{isTimeAvailable ? (
 						<input
 							type="text"
@@ -176,7 +176,7 @@ const FlightLogTableRow: React.FC<FlightLogTableRowProps> = React.memo(
 						'-'
 					)}
 				</td>
-				<td style={{ width: '100px' }}>
+				<td style={{ width: '120px' }}>
 					{isTimeAvailable ? (
 						<input
 							type="text"

@@ -38,8 +38,8 @@
     "windows": [
       {
         "title": "igc-app",
-        "width": 800,
-        "minWidth": 800,
+        "width": 950,
+        "minWidth": 950,
         "minHeight": 600,
         "resizable": true
       }
