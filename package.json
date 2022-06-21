@@ -3,15 +3,17 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview",
+    "dev": "tauri dev",
+    "dev:front": "vite",
+    "build": "tauri build",
+    "build:front": "tsc && vite build",
     "lint": "yarn run lint:eslint && yarn run lint:prettier",
     "lint:eslint": "eslint --ext .js,.ts,.jsx,.tsx ./src",
     "lint:prettier": "prettier --check .",
     "fix": "yarn run fix:eslint && yarn run fix:prettier",
     "fix:eslint": "eslint --ext .js,.ts,.jsx,.tsx --fix ./src",
-    "fix:prettier": "prettier --fix ."
+    "fix:prettier": "prettier --fix .",
+    "typecheck": "tsc"
   },
   "dependencies": {
     "@tauri-apps/api": "^1.0.1",
