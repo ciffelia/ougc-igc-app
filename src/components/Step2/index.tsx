@@ -3,6 +3,7 @@ import { BsExclamationCircle } from 'react-icons/bs';
 import { unreachable } from '@/util';
 import { FlightLog } from '@/flight/types';
 import { readAndParseFlightLog } from '@/flight/igc';
+import { compareFlightLog } from '@/flight/compareFlightLog';
 
 export interface Props {
 	selectedFiles: string[];
@@ -28,7 +29,10 @@ const Step2: React.FC<Props> = React.memo(function Step2({
 		setState(State.InProgress);
 
 		Promise.all(selectedFiles.map(readAndParseFlightLog))
-			.then((flightLogs) => onComplete(flightLogs))
+			.then((flightLogs) => {
+				flightLogs.sort(compareFlightLog);
+				onComplete(flightLogs);
+			})
 			.catch((err) => {
 				console.error(err);
 				setState(State.Error);
