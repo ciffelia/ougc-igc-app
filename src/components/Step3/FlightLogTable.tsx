@@ -119,7 +119,7 @@ const FlightLogTableRow: React.FC<FlightLogTableRowProps> = React.memo(
 						? flightLog.land.toLocal().toFormat('HH:mm')
 						: '不明'}
 				</td>
-				<td>
+				<td style={{ width: '100px' }}>
 					{isTimeAvailable ? (
 						<input
 							type="number"
@@ -134,7 +134,7 @@ const FlightLogTableRow: React.FC<FlightLogTableRowProps> = React.memo(
 						'-'
 					)}
 				</td>
-				<td>
+				<td style={{ width: '100px' }}>
 					{isTimeAvailable ? (
 						<input
 							type="text"
@@ -148,7 +148,7 @@ const FlightLogTableRow: React.FC<FlightLogTableRowProps> = React.memo(
 						'-'
 					)}
 				</td>
-				<td>
+				<td style={{ width: '100px' }}>
 					{isTimeAvailable ? (
 						<input
 							type="text"
@@ -162,7 +162,7 @@ const FlightLogTableRow: React.FC<FlightLogTableRowProps> = React.memo(
 						'-'
 					)}
 				</td>
-				<td>
+				<td style={{ width: '220px' }}>
 					{newFilename === originalFilename ? '（変更なし）' : newFilename}
 				</td>
 			</tr>
