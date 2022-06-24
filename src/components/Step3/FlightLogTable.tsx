@@ -1,4 +1,5 @@
 import React, { useCallback, useId, useMemo } from 'react';
+import { unique } from '@/util';
 import { base } from '@/path';
 import { FlightLog } from '@/flight/types';
 import { nameFlightLog } from '@/flight/nameFlightLog';
@@ -14,11 +15,11 @@ const FlightLogTable: React.FC<Props> = React.memo(function FlightLogTable({
 	onFlightLogsChange,
 }) {
 	const frontSeatOptions = useMemo(
-		() => Array.from(new Set(flightLogs.map((log) => log.frontSeat))),
+		() => unique(flightLogs.map((log) => log.frontSeat)),
 		[flightLogs],
 	);
 	const backSeatOptions = useMemo(
-		() => Array.from(new Set(flightLogs.map((log) => log.backSeat))),
+		() => unique(flightLogs.map((log) => log.backSeat)),
 		[flightLogs],
 	);
 

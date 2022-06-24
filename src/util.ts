@@ -6,6 +6,10 @@ export const unreachable = (x?: never): never => {
 	throw new Error(`Reached unreachable code: ${x}`);
 };
 
+export const unique = <T>(arr: T[]): T[] => {
+	return [...new Set(arr)];
+};
+
 export const useFileDrop = (onDrop: (files: string[]) => void): void => {
 	useEffect(() => {
 		const p = listen<string[]>('tauri://file-drop', (event) => {
