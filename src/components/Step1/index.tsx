@@ -1,4 +1,5 @@
 import React, { useCallback, useState } from 'react';
+import { useFileDrop } from '@/util';
 import FileList from './FileList';
 import IgcSelectButton from './IgcSelectButton';
 
@@ -15,6 +16,7 @@ const Step1: React.FC<Props> = React.memo(function Step1({ onComplete }) {
 		},
 		[selectedFiles],
 	);
+	useFileDrop(handleSelect);
 
 	const handleNextClick = useCallback(() => {
 		onComplete(selectedFiles);
