@@ -164,30 +164,42 @@ const FlightLogTableRow: React.FC<FlightLogTableRowProps> = React.memo(
 				</td>
 				<td style={{ width: '120px' }}>
 					{isTimeAvailable ? (
-						<input
-							type="text"
-							className="form-control"
-							value={flightLog.frontSeat}
-							onChange={handleFrontSeatChange}
-							placeholder="空席"
-							list={frontSeatDataListId}
-							aria-label="前席搭乗者"
-						/>
+						<>
+							<input
+								type="text"
+								className="form-control"
+								value={flightLog.frontSeat}
+								onChange={handleFrontSeatChange}
+								placeholder="空席"
+								list={frontSeatDataListId}
+								aria-label="前席搭乗者"
+							/>
+							<DataList
+								id={frontSeatDataListId}
+								options={filteredFrontSeatOptions}
+							/>
+						</>
 					) : (
 						'-'
 					)}
 				</td>
 				<td style={{ width: '120px' }}>
 					{isTimeAvailable ? (
-						<input
-							type="text"
-							className="form-control"
-							value={flightLog.backSeat}
-							onChange={handleBackSeatChange}
-							placeholder="空席"
-							list={backSeatDataListId}
-							aria-label="後席搭乗者"
-						/>
+						<>
+							<input
+								type="text"
+								className="form-control"
+								value={flightLog.backSeat}
+								onChange={handleBackSeatChange}
+								placeholder="空席"
+								list={backSeatDataListId}
+								aria-label="後席搭乗者"
+							/>
+							<DataList
+								id={backSeatDataListId}
+								options={filteredBackSeatOptions}
+							/>
+						</>
 					) : (
 						'-'
 					)}
@@ -195,8 +207,6 @@ const FlightLogTableRow: React.FC<FlightLogTableRowProps> = React.memo(
 				<td style={{ width: '220px' }}>
 					{newFilename === originalFilename ? '（変更なし）' : newFilename}
 				</td>
-				<DataList id={frontSeatDataListId} options={filteredFrontSeatOptions} />
-				<DataList id={backSeatDataListId} options={filteredBackSeatOptions} />
 			</tr>
 		);
 	},
