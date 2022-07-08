@@ -11,7 +11,7 @@
     "lint:prettier": "prettier --check .",
     "fix": "yarn run fix:eslint && yarn run fix:prettier",
     "fix:eslint": "eslint --ext .js,.ts,.jsx,.tsx --fix ./src",
-    "fix:prettier": "prettier --fix .",
+    "fix:prettier": "prettier --write .",
     "typecheck": "tsc"
   },
   "dependencies": {
