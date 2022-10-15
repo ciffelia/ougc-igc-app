@@ -7,7 +7,7 @@
   "build": {
     "beforeDevCommand": "yarn dev:front",
     "beforeBuildCommand": "yarn build:front",
-    "devPath": "http://localhost:3000",
+    "devPath": "http://localhost:5173",
     "distDir": "../dist"
   },
   "tauri": {
